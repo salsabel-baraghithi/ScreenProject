@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventsScreenProject.Models
 {
-    public class Event
+    public class Event: IBaseModel
     {
         public long Id { get; set; }
         public DateTime StartDate { get; set; }

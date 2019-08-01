@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EventsScreenProject.Models
 {
-    public class TemplateField
+    public class TemplateField:IBaseModel
     {
         public long Id { get; set; }
         public String Name { get; set; }
@@ -16,7 +16,7 @@ namespace EventsScreenProject.Models
         public String FontFamily { get; set; }
         public String FontColor { get; set; }
 
-        public long TemplateId { get; set; }
+        public long? TemplateId { get; set; }
         public Template MyTemplate { get; set; }
 
         public ICollection<EventField> EventFields { get; set; }

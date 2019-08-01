@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Rewrite.Internal.UrlActions;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventsScreenProject.Models
@@ -20,7 +21,8 @@ namespace EventsScreenProject.Models
             {
                 builder.HasOne<Event>(c => c.MyEvent)
                     .WithMany(c => c.EventFields)
-                    .HasForeignKey(c => c.EventId);
+                    .HasForeignKey(c => c.EventId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
 
                 builder.HasKey(c => c.Id);
             });
@@ -29,8 +31,9 @@ namespace EventsScreenProject.Models
             {
                 builder.HasOne<Template>(c => c.MyTemplate)
                     .WithMany(c => c.TemplateFields)
-                    .HasForeignKey(c => c.TemplateId);
-
+                    .HasForeignKey(c => c.TemplateId)
+                    .OnDelete(DeleteBehavior.ClientSetNull);
+                    
                 builder.HasKey(c => c.Id);
             });
 

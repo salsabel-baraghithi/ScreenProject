@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EventsScreenProject.Models
 {
-    public class Employee
+    public class Employee: IBaseModel
     {
         public long Id { get; set; }
         public String FName { get; set; }

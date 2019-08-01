@@ -1,3 +1,6 @@
+using EventsScreenProject.Models;
+using EventsScreenProject.Persistent;
+using EventsScreenProject.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,10 +36,17 @@ namespace EventsScreenProject
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddDbContext<DbContext>(builder =>
+            services.AddDbContext<MyAppContext>(builder =>
             {
                 builder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddScoped<IEmployeeRepo, EmployeeRepo>();
+            services.AddScoped<IEventRepo, EventRepo>();
+            services.AddScoped<IEventFieldRepo, EventFieldRepo>();
+            services.AddScoped<ITemplateFieldRepo, TemplateFieldRepo>();
+            services.AddScoped<ITemplateRepo, TemplateRepo>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
