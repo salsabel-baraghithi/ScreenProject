@@ -15,7 +15,7 @@ namespace EventsScreenProject.Models
         public int Priority { get; set; }
 
         public long TemplateId { get; set; }
-        public Template Template { get; set; }
+        public Template MyTemplate { get; set; }
 
         public ICollection<EventField> EventFields { get; set; }
 

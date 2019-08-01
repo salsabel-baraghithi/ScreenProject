@@ -17,7 +17,7 @@ namespace EventsScreenProject.Models
         public String FontColor { get; set; }
 
         public long TemplateId { get; set; }
-        public Template Template  { get; set; }
+        public Template MyTemplate { get; set; }
 
         public ICollection<EventField> EventFields { get; set; }
 
