@@ -1,24 +1,4 @@
-<h1>Weather forecast</h1>
-
-<p>This component demonstrates fetching data from the server.</p>
-
-<p *ngIf="!forecasts"><em>Loading...</em></p>
-
-<table class='table table-striped' *ngIf="forecasts">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Temp. (C)</th>
-      <th>Temp. (F)</th>
-      <th>Summary</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.dateFormatted }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
-    </tr>
-  </tbody>
-</table>
+<div *ngFor="let event of events" [style.background-image]="'url(' + event.background + ')'" class="event-demo">
+  <div *ngFor="let eventField of event.eventFieldViewModels"[style.font-size.px]="eventField.fontSize" [style.color]="eventField.fontColor"[style.font-family]="eventField.fontFamily"[style.margin-left.px]="eventField.leftPosition"[style.margin-top.px]="eventField.topPosition"[style.font-style]="eventField.fontStyle"[style.font-weight]="eventField.fontWeight"
+       class="event-field-demo">{{ eventField.value }}</div>
+</div>

@@ -29,6 +29,12 @@
   <ItemGroup>
     <Compile Remove="Migrations\20190801104827_firstMig.cs" />
     <Compile Remove="Migrations\20190801104827_firstMig.Designer.cs" />
+    <Compile Remove="Migrations\20190804120423_v2.cs" />
+    <Compile Remove="Migrations\20190804120423_v2.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\assets\backgrounds\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

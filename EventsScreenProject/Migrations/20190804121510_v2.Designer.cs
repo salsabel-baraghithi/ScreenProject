@@ -4,14 +4,16 @@ using EventsScreenProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EventsScreenProject.Migrations
 {
     [DbContext(typeof(MyAppContext))]
-    partial class MyAppContextModelSnapshot : ModelSnapshot
+    [Migration("20190804121510_v2")]
+    partial class v2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,8 +81,6 @@ namespace EventsScreenProject.Migrations
 
                     b.Property<long>("TemplateFiledId");
 
-                    b.Property<string>("Type");
-
                     b.Property<string>("Value");
 
                     b.HasKey("Id");
@@ -123,13 +123,13 @@ namespace EventsScreenProject.Migrations
 
                     b.Property<string>("FontWeight");
 
-                    b.Property<int?>("LeftPosition");
+                    b.Property<int>("LeftPosition");
 
                     b.Property<string>("Name");
 
                     b.Property<long?>("TemplateId");
 
-                    b.Property<int?>("TopPosition");
+                    b.Property<int>("TopPosition");
 
                     b.HasKey("Id");
 

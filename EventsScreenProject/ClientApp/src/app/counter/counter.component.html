@@ -1,7 +1,28 @@
-<h1>Counter</h1>
+<h1>Weather forecast</h1>
 
-<p>This is a simple example of an Angular component.</p>
+<p>This component demonstrates fetching data from the server.</p>
 
-<p>Current count: <strong>{{ currentCount }}</strong></p>
+<p *ngIf="!events"><em>Loading...</em></p>
 
-<button class="btn btn-primary" (click)="incrementCounter()">Increment</button>
+<table class='table table-striped' *ngIf="events">
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>date</th>
+    <th>StartTime</th>
+    <th>EndTime</th>
+    <th>Priority</th>
+    <th>Background</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let event of events">
+    <td>{{ event.id }}</td>
+    <td>{{ event.date }}</td>
+    <td>{{ event.startTime }}</td>
+    <td>{{ event.endTime }}</td>
+    <td>{{ event.priority }}</td>
+    <td>{{ event.background }}</td>
+  </tr>
+  </tbody>
+</table>

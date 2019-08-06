@@ -6,14 +6,36 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './fetch-data.component.html'
 })
 export class FetchDataComponent {
-  public forecasts: WeatherForecast[];
+  public events: any[];
+  public interval = 1000*60*60;
+  
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<WeatherForecast[]>(baseUrl + 'api/SampleData/WeatherForecasts').subscribe(result => {
-      this.forecasts = result;
+
+    this.GetEvents(http, baseUrl);
+    this.Reload(http, baseUrl);
+  }
+
+
+  GetEvents(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+    var Inject = function (url: string) { throw new Error("Not implemented"); };
+    http.get<any[]>(baseUrl + 'api/events').subscribe(result => {
+      this.events = result;
+      console.log(this.events);
     }, error => console.error(error));
   }
+
+ 
+  Reload(http: HttpClient, @Inject('BASE_URL') baseUrl: string): void {
+    setInterval(() => {
+      this.GetEvents(http, baseUrl);
+    }, this.interval);
+  }
+
+
+
 }
+
 
 interface WeatherForecast {
   dateFormatted: string;

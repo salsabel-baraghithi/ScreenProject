@@ -1,3 +1,5 @@
+using System;
+using AutoMapper;
 using EventsScreenProject.Models;
 using EventsScreenProject.Persistent;
 using EventsScreenProject.Repository;
@@ -40,6 +42,9 @@ namespace EventsScreenProject
             {
                 builder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 
             services.AddScoped<IEmployeeRepo, EmployeeRepo>();
             services.AddScoped<IEventRepo, EventRepo>();

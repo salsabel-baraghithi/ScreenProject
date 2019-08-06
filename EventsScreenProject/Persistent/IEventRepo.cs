@@ -8,5 +8,6 @@ namespace EventsScreenProject.Persistent
 {
     public interface IEventRepo : IBaseRepo<Event>
     {
+        List<Event> GetTodayEvents();
     }
 }
