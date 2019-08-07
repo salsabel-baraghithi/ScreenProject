@@ -7,22 +7,20 @@
 <table class='table table-striped' *ngIf="events">
   <thead>
   <tr>
-    <th>id</th>
+    <th>Template name</th>
     <th>date</th>
-    <th>StartTime</th>
-    <th>EndTime</th>
+    <th>Start Time</th>
+    <th>End Time</th>
     <th>Priority</th>
-    <th>Background</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let event of events">
-    <td>{{ event.id }}</td>
+    <td>{{ event.templateName }}</td>
     <td>{{ event.date }}</td>
     <td>{{ event.startTime }}</td>
     <td>{{ event.endTime }}</td>
     <td>{{ event.priority }}</td>
-    <td>{{ event.background }}</td>
   </tr>
   </tbody>
 </table>

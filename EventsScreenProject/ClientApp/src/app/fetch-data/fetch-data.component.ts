@@ -5,13 +5,15 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html'
 })
+
 export class FetchDataComponent {
   public events: any[];
-  public interval = 1000*60*60;
-  
+  reloadTime = 1000 * 60 * 60;
+  swappingTime = 1000 * 60;
+  selectedEventIndex = 0;
+  selectedEvent: any;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-
     this.GetEvents(http, baseUrl);
     this.Reload(http, baseUrl);
   }
@@ -19,9 +21,13 @@ export class FetchDataComponent {
 
   GetEvents(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     var Inject = function (url: string) { throw new Error("Not implemented"); };
-    http.get<any[]>(baseUrl + 'api/events').subscribe(result => {
+    http.get<any[]>(baseUrl + 'api/events/GetTodayEvents').subscribe(result => {
       this.events = result;
       console.log(this.events);
+     
+      this.selectedEvent = this.events[this.selectedEventIndex];
+      this.Swap();
+      
     }, error => console.error(error));
   }
 
@@ -29,10 +35,18 @@ export class FetchDataComponent {
   Reload(http: HttpClient, @Inject('BASE_URL') baseUrl: string): void {
     setInterval(() => {
       this.GetEvents(http, baseUrl);
-    }, this.interval);
+    }, this.reloadTime);
   }
 
+  Swap(): void {
+    setInterval(()=>{
+      this.selectedEventIndex = (this.selectedEventIndex + 1) % this.events.length;
+      this.selectedEvent = this.events[this.selectedEventIndex];
+      
+    }, this.swappingTime);
+  }
 
+ 
 
 }
 

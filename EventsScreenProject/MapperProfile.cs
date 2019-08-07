@@ -35,6 +35,8 @@ namespace EventsScreenProject
            CreateMap<Event, EventViewModel>()
                .ForMember(e => e.Background,
                    map => map.MapFrom(c => c.MyTemplate.BackgroundImg))
+               .ForMember(e => e.TemplateName,
+                   map => map.MapFrom(c => c.MyTemplate.Name))
                .ForMember(e => e.EventFieldViewModels,
                    map => map.MapFrom(c => c.EventFields));
 

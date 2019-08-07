@@ -26,8 +26,8 @@ namespace EventsScreenProject.Controllers
         }
 
         // GET api/values
-        [HttpGet]
-        public List<EventViewModel> Get()
+        [HttpGet("GetTodayEvents")]
+        public List<EventViewModel> GetTodayEvents()
         {
             
             List<Event> events = _iEventRepo.GetTodayEvents();
@@ -39,12 +39,17 @@ namespace EventsScreenProject.Controllers
            
         }
         // GET api/values
-        [HttpGet("t")]
-        public ActionResult<List<Event>> GetT()
+        [HttpGet]
+        public List<EventViewModel> Get()
         {
 
-           
-            return null;
+
+            List<Event> events = _iEventRepo.GetAll();
+            /*   return events;*/
+
+            List<EventViewModel> eventViewModels = _iMapper.Map<List<EventViewModel>>(events);
+            return eventViewModels;
+
         }
     }
 }

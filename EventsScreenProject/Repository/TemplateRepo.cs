@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using EventsScreenProject.Repository;
 using EventsScreenProject.Models;
 using EventsScreenProject.Persistent;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventsScreenProject.Repository
 {
@@ -15,6 +16,14 @@ namespace EventsScreenProject.Repository
         public TemplateRepo(MyAppContext appContext) : base(appContext)
         {
             _appContext = appContext;
+        }
+
+        public new List<Template> GetAll()
+        {
+            return _appContext.Templates
+                .Include(t => t.TemplateFields)
+                .ToList();
+
         }
     }
   

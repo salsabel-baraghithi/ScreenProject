@@ -16,6 +16,8 @@ namespace EventsScreenProject.ViewModels
         public int Priority { get; set; }
 
         public String Background { get; set; }
+        public String TemplateName { get; set; }
+
 
         public ICollection<EventFieldViewModel> EventFieldViewModels { get; set; }
 

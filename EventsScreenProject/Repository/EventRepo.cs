@@ -20,7 +20,6 @@ namespace EventsScreenProject.Repository
         public List<Event> GetTodayEvents()
         {
             DateTime currentDate = DateTime.Now;
-
             /*
             DateTime currentDate = DateTime.UtcNow;
 
@@ -31,20 +30,25 @@ namespace EventsScreenProject.Repository
              */
 
 
-            return _appContext.Events.Where(e =>
+            return _appContext.Events.Where(e =>(
                     (e.Repeat.Trim().ToLower().Equals("annually") && e.Date.ToString("M").Equals(currentDate.ToString("M"))) ||
                     (e.Repeat.Trim().ToLower().Equals("monthly") && e.Date.ToString("dd").Equals(currentDate.ToString("dd"))) ||
                     (e.Repeat.Trim().ToLower().Equals("daily")) ||
-                    (e.Repeat.Trim().ToLower().Equals("once") && e.Date.Date == currentDate.Date)
+                    (e.Repeat.Trim().ToLower().Equals("once") && e.Date.Date == currentDate.Date)) && 
+                    ((e.StartTime.CompareTo(currentDate.TimeOfDay) < 0 ) && (e.EndTime.CompareTo(currentDate.TimeOfDay) > 0))
                 )
                 .Include(e => e.MyTemplate).ThenInclude(t => t.TemplateFields).ThenInclude(tf => tf.EventFields)
                 .Include(e => e.EventFields)
                 .ToList();
 
         }
-        private void GetEvents(DateTime date)
-        {
 
+        public new List<Event> GetAll()
+        {
+            return _appContext.Events
+                .Include(e => e.MyTemplate).ThenInclude(t => t.TemplateFields).ThenInclude(tf => tf.EventFields)
+                .Include(e => e.EventFields)
+                .ToList();
         }
 
         private List<Event> GetAnnuallyEvents(DateTime date)
