@@ -45,7 +45,6 @@ namespace EventsScreenProject
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-
             services.AddScoped<IEmployeeRepo, EmployeeRepo>();
             services.AddScoped<IEventRepo, EventRepo>();
             services.AddScoped<IEventFieldRepo, EventFieldRepo>();

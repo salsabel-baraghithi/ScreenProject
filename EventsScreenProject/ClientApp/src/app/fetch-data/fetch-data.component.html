@@ -1,16 +1,18 @@
-<p *ngIf="!selectedEvent">Loading...</p>
+<p *ngIf="!selectedBackground">Loading...</p>
 
-<div *ngIf="selectedEvent" [style.background-image]="'url(' + selectedEvent.background  + ')'" class="event-demo">
-  <div *ngIf="selectedEvent.eventFieldViewModels">
-    <div *ngFor="let eventField of selectedEvent.eventFieldViewModels"
-         [style.font-size.px]="eventField.fontSize"
-         [style.color]="eventField.fontColor"
-         [style.font-family]="eventField.fontFamily"
-         [style.margin-left.px]="eventField.leftPosition"
-         [style.margin-top.px]="eventField.topPosition"
-         [style.font-style]="eventField.fontStyle"
-         [style.font-weight]="eventField.fontWeight"
-         class="event-field-demo">{{ eventField.value }}</div>
+<div *ngIf="selectedBackground" [style.background-image]="'url(' + selectedBackground  + ')'" class="event-demo">
+  <div *ngIf="selectedEvent">
+    <div *ngIf="selectedEvent.eventFieldViewModels">
+      <div *ngFor="let eventField of selectedEvent.eventFieldViewModels"
+           [style.font-size.px]="eventField.fontSize"
+           [style.color]="eventField.fontColor"
+           [style.font-family]="eventField.fontFamily"
+           [style.left.%]="eventField.leftPosition"
+           [style.top.%]="eventField.topPosition"
+           [style.font-style]="eventField.fontStyle"
+           [style.font-weight]="eventField.fontWeight"
+           class="event-field-demo">{{ eventField.value }}</div>
+    </div>
   </div>
-  
+
 </div>
